@@ -1,0 +1,174 @@
+---
+title: "Math 4753 Lab 1 Introduction to R"
+author: "Vincent Tran"
+date: "`r Sys.Date()`"
+output: 
+  html_document: 
+    fig_caption: yes
+    fig_height: 4
+    fig_width: 5
+    number_sections: yes
+    toc: true
+    toc_float: true
+    toc_collapsed: false
+  pdf_document: default
+---
+# Lab 1
+
+## Task 1: get working directory
+
+```{r}
+getwd()
+```
+
+## Task 2: save excel as csv
+
+```{r}
+ddt = read.csv("ddt.csv")
+head(ddt)
+```
+## Task 3: Subset data
+```{r}
+summary(ddt)
+```
+
+Qualitative Variables:
+- RIVER
+- SPECIES
+Quantitative Variables:
+- MILE
+- LENGTH
+- WEIGHT
+- DDT
+
+Number of species in dataset: 144
+
+Large mouth basses with weight bigger than 800gms
+```{r}
+ddtHeavyLmbass = ddt[ddt$SPECIES == "LMBASS" & ddt$WEIGHT > 800, ]
+ddtHeavyLmbass
+```
+
+SCM river where DDT bigger than 4.0
+```{r}
+ddtScmRiverDdt4 = ddt[ddt$RIVER == "SCM" & ddt$DDT > 4.0, ]
+ddtScmRiverDdt4
+```
+
+## Task 4: 4 questions
+1. mean length of fish in ddt: 42.8125
+```{r}
+meanFishLengthDdt = mean(ddt$LENGTH)
+meanFishLengthDdt
+```
+2. standard deviation of fish weight in ddt: 376.5461
+```{r}
+sd(ddt$WEIGHT)
+```
+Q3. Is this the plot of LENGTH vs WEIGHT from the ddt data frame? No | 0
+It is a WEIGHT vs LENGTH plot.
+```{r}
+library(ggplot2)
+
+plot <- ggplot(ddt, aes(x=WEIGHT, y=LENGTH)) + geom_point()
+plot
+```
+
+Q4. If v=1:20 what is the last value of v/20?: 1
+```{r}
+v=1:20
+v/20
+```
+
+
+
+## Task 5: Tables and bar plots
+
+River table and bar plot
+```{r}
+riverTable <- with(ddt,table(RIVER))
+riverTable
+barplot(riverTable, beside=TRUE, col=1:4)
+```
+
+River species table and bar plot
+```{r}
+riverSpeciesTable=with(ddt,table(RIVER,SPECIES))
+riverSpeciesTable
+
+barplot(riverSpeciesTable, beside=TRUE, col=rainbow(4))
+```
+
+## Task 6: Pie charts
+species pie chart
+```{r}
+speciesTable <- with(ddt,table(SPECIES))
+pie(speciesTable,col=1:3)
+```
+
+rivers pie chart
+```{r}
+riverTable <- with(ddt,table(RIVER))
+pie(riverTable, col = 1:4)
+```
+
+## Task 7: boxplot
+
+DDT boxplot
+```{r}
+ggplot(ddt, aes(DDT)) + geom_boxplot()
+```
+
+WEIGHT boxplot
+```{r}
+ggplot(ddt, aes(WEIGHT)) + geom_boxplot()
+```
+
+LENGTH boxplot
+```{r}
+ggplot(ddt, aes(LENGTH)) + geom_boxplot()
+```
+
+## Task 8: coplot
+LENGTH Vs WEIGHT given RIVER coplot
+```{r}
+rivcol=with(ddt, ifelse(RIVER=="FCM","Red",
+                        ifelse(RIVER=="LCM","Blue",
+                               ifelse(RIVER=="SCM","Green","Black"))))
+coplot(LENGTH~WEIGHT|RIVER,data=ddt, col = rivcol)
+```
+
+DDT Vs WEIGHT given SPECIES coplot
+```{r}
+fishcol=with(ddt,ifelse(SPECIES=="CCATFISH","Red",
+                        ifelse(SPECIES=="SMBUFFALO","Blue","Green")))
+coplot(DDT~WEIGHT|SPECIES, data=ddt, col=fishcol)
+```
+
+
+## Task 9: Replicating plots with ggplot
+
+Plot 1
+vertical boxplot weight vs species by river with legend
+```{r}
+VincentTran <- ggtitle("Vincent Tran")
+barchartPlotWeightSpeciesRiver <- ggplot(ddt, aes(x=SPECIES, y=WEIGHT, fill=RIVER)) + geom_boxplot()
+
+barchartPlotWeightSpeciesRiver + VincentTran
+```
+
+Plot 2
+```{r}
+violinPlotLengthRiverSpecies <- ggplot(ddt, aes(x=RIVER, y=LENGTH, fill=SPECIES)) + geom_violin()
+
+violinPlotLengthRiverSpecies + VincentTran
+```
+
+
+Plot 3
+```{r}
+scatterPlotLengthWeightSpecies <- ggplot(ddt, aes(x=WEIGHT, y=LENGTH, color=SPECIES)) + geom_point()
+
+scatterPlotLengthWeightSpecies + VincentTran
+```
+

@@ -1,0 +1,105 @@
+---
+title: "Math 4753 Lab 2"
+author: "Vincent Tran"
+date: "`r Sys.Date()`"
+output: 
+  html_document: 
+    fig_caption: yes
+    fig_height: 4
+    fig_width: 5
+    number_sections: yes
+    toc: true
+    toc_float: true
+    toc_collapsed: false
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Lab 2
+
+## Task 1: download and setup
+```{r}
+getwd()
+```
+
+## Task 2: read csv
+```{r}
+ddt = read.csv("EPAGAS.csv")
+head(ddt)
+```
+
+## Task 3: Using z scores
+```{r}
+mpg <- ddt$MPG
+mpg
+
+zScores <- (mpg - mean(mpg)) / sd(mpg)
+zScores
+
+zBar <- round(mean(zScores), 10)
+zBar
+zVariance <- var(zScores)
+zVariance
+```
+
+possible outliers
+```{r}
+possibleOutliers <- mpg[abs(zScores)>=2 & abs(zScores)<=3]
+possibleOutliers
+```
+
+values defined as outliers
+```{r}
+outliers <- mpg[abs(zScores)>3]
+outliers
+```
+
+### Using the lattice package construct a dotplot with colors, Red=outlier, Blue=possible outlier. (NB – read the instructions in the lab2.r file for installing the package)
+
+```{r}
+mycol = ifelse(abs(zScores)>3, "Red",
+        ifelse(abs(zScores)>=2 & abs(zScores)<=3,"Blue", "Black"))  
+library(lattice)
+dotplot(mpg,col=mycol)
+```
+
+
+## Task 4: boxplot, Chebyshev’s, and Empirical rule
+
+
+```{r}
+library(ggplot2)
+boxplotMpg <- ggplot(ddt, aes(MPG)) + geom_boxplot(notch = TRUE, fill="black") + ggtitle("boxplot MPG")
+boxplotMpg
+```
+
+### Chebyshev's Rule
+
+```{r}
+meanMpg <- mean(mpg)
+sdMpg <- sd(mpg)
+
+proportionOfDataIn2SdByChebyshev <- (1 - 1/(2^2))
+proportionOfDataIn2SdByChebyshev
+```
+```{r}
+proportionOfDataIn2Sd <- length(mpg[abs(zScores)<2])/length(mpg)
+proportionOfDataIn2Sd
+```
+Does Chebyshev agree with the data? Yes. 0.96 > 0.75.
+
+### Empirical Rule
+
+By the Empirical rule, approximately 95% of the data should be within 2 standard deviation of the mean.
+
+About 96% of the data is in 2 standard deviation so the Empirical rule corresponds fairly well.
+
+The Empirical rule is valid because the data distribution is fairly normal, uni modal, and symmetric about the mean.
+```{r}
+ggplot(ddt, aes(x=MPG)) + geom_histogram()
+```
+
+
