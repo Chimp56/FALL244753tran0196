@@ -22,7 +22,10 @@
 #' @param p probability of a "show"
 #'
 #' @return a named list containing nd, nc, N, p and gamma
+#' @return plots of Objective function Vs n
 #'
+#' @importFrom stats qbinom pbinom pnorm uniroot
+#' @importFrom graphics abline par
 #' @export
 #'
 #' @examples
@@ -31,21 +34,42 @@
 #' ntickets(N=200,gamma = 0.02, p = 0.95)
 ntickets <- function(N,gamma,p){
   # Discrete
-  nd <- qbinom(1-gamma, N, p)
+  n <- seq(N, floor(N + N/10), by = 1)
+  discrete_objective <- 1 - gamma - pbinom(N, size = n, prob = p)
 
-  # Normal
-  nc <- qnorm(1-gamma, mean = N*p, sd = sqrt(N*p*(1-p))) - 0.5
+  index <- which.min(abs(discrete_objective))
+  nd <- n[index]
 
-  # Plot
-  n <- seq(0, N, 1)
+  # Continuous Approach (Normal Approximation)
+  mean_approx <- N * p
+  sd_approx <- sqrt(N * p * (1 - p))
+  objective_normal <- function(n) {
+    1 - gamma - pnorm(N + 0.5, mean = n * p, sd = sqrt(n * p * (1 - p)))
+  }
 
-  ## plot of Objective function Vs n discrete
-  obj_discrete <- 1-gamma-pbinom(n, N, p)
-  plot(n, obj_discrete, type = "l", col = "blue", xlab = "n", ylab = "Objective function", main = "Objective function Vs n")
+  # Find nc by solving the equation 1 - gamma = pnorm(...)
+  nc <- uniroot(function(n) objective_normal(n), lower = N, upper = N + 50)$root
 
-  ## plot of Objective function Vs n continuous
-  obj_continuous <- 1-gamma-pnorm(n)
-  lines(n, obj_continuous, col = "red")
+  # Create the plot for the normal approximation
+  continuous_objective <- 1 - gamma - pnorm(N, mean = n * p, sd = sqrt(n * p * (1 - p)))
+
+  # Plot for discrete case
+  par(mfrow=c(2,1)) # Set up a 2-row layout for plots
+
+  plot(n, discrete_objective, type = "b", pch = 20, col = "black",
+       main = paste0("Objective Vs n to find optimal tickets sold\n(", round(nd, 4),
+                     ") gamma= ", gamma, " N=", N, " discrete"),
+       xlab = "n", ylab = "Objective")
+  abline(h = 0, col = "red")
+  abline(v = nd, col = "red", lwd = 2)
+
+  # Plot for continuous case
+  plot(n, continuous_objective, type = "l", col = "black",
+       main = paste0("Objective Vs n to find optimal tickets sold\n(", round(nc, 4),
+                     ") gamma= ", gamma, " N=", N, " continuous"),
+       xlab = "n", ylab = "Objective")
+  abline(h = 0, col = "blue")
+  abline(v = nc, col = "blue", lwd = 2)
 
   return(list(nd = nd, nc = nc, N = N, p = p, gamma = gamma))
 }

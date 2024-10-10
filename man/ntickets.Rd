@@ -15,6 +15,8 @@ ntickets(N, gamma, p)
 }
 \value{
 a named list containing nd, nc, N, p and gamma
+
+plots of Objective function Vs n
 }
 \description{
 calculates the number of tickets to be sold when the number of seats in the
@@ -37,4 +39,5 @@ continuous case.
 \examples{
 ntickets(100,0.1,0.9)
 ntickets(N=400,gamma = 0.02, p = 0.95)
+ntickets(N=200,gamma = 0.02, p = 0.95)
 }
