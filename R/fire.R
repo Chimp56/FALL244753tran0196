@@ -9,4 +9,26 @@
 #'   ...
 #' }
 #' @source \url{https://www.crcpress.com/Statistics-for-Engineering-and-the-Sciences/Mendenhall-Sincich/p/book/9781498728850}
+#'
+#' \if{html}{Here is my figure:
+#'
+#'   \out{<div style="text-align: center">}\figure{discrete_probabilities.png}{options: style="width:750px;max-width:75\%;"}\out{</div>}
+#'
+#' }
+#' \if{latex}{Here is my figure:
+#'
+#'   \out{\begin{center}}\figure{discrete_probabilities.png}\out{\end{center}}
+#'
+#' }
+#'
+#' \if{html}{Here is my figure:
+#'
+#'   \out{<div style="text-align: center">}\figure{continuous_probabilties.png}{options: style="width:750px;max-width:75\%;"}\out{</div>}
+#'
+#' }
+#' \if{latex}{Here is my figure:
+#'
+#'   \out{\begin{center}}\figure{continuous_probabilties.png}\out{\end{center}}
+#'
+#' }
 "fire"
