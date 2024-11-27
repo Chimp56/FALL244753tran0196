@@ -1,4 +1,7 @@
-#' @title Maximum likelihood estimation of beta parameters
+#' mymlbeta
+#'
+#' @description
+#' Compute the maximum likelihood estimate of the parameters of a beta distribution
 #'
 #' @param x sample vector
 #' @param alpha vector of alpha values

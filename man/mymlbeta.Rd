@@ -2,7 +2,7 @@
 % Please edit documentation in R/mymlbeta.R
 \name{mymlbeta}
 \alias{mymlbeta}
-\title{Maximum likelihood estimation of beta parameters}
+\title{mymlbeta}
 \usage{
 mymlbeta(x, alpha, beta, ...)
 }
@@ -26,7 +26,7 @@ a list with the following components:
 }
 }
 \description{
-Maximum likelihood estimation of beta parameters
+Compute the maximum likelihood estimate of the parameters of a beta distribution
 }
 \examples{
 x = rbeta(100, 2, 5)

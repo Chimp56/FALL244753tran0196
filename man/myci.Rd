@@ -2,7 +2,7 @@
 % Please edit documentation in R/myci.R
 \name{myci}
 \alias{myci}
-\title{Compute a confidence interval for the mean of a normal distribution}
+\title{myci}
 \usage{
 myci(data, alpha = 0.05)
 }

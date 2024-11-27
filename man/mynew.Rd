@@ -13,7 +13,7 @@ mynew(x)
 A numeric value
 }
 \description{
-mynew
+A simple function that computes the cube of the mean of a vector divided by the variance of the vector
 }
 \examples{
 x=rnorm(100)

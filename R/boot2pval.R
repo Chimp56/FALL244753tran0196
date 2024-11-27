@@ -1,4 +1,7 @@
-#' @title boot2pval
+#' boot2pval
+#'
+#' @description
+#' boot2pval computes the p-value for a two-sample t-test using a bootstrap method
 #'
 #' @param x1 vector of sample 1
 #' @param x2 vector of sample 2

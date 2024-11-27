@@ -1,3 +1,6 @@
+#' myci
+#'
+#' @description
 #' Compute a confidence interval for the mean of a normal distribution
 #'
 #' @param data a numeric vector of data

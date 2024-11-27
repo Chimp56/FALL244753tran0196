@@ -1,4 +1,7 @@
-#' @title Normal Curve with Area Calculation
+#' myncurve
+#'
+#' @description
+#' Plot a normal distribution curve and calculate the probability P(X <= a)
 #'
 #' @param mu The mean of the normal distribution
 #' @param sigma The standard deviation of the normal distribution

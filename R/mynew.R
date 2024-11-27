@@ -1,5 +1,7 @@
 #' @title mynew
 #'
+#' @description A simple function that computes the cube of the mean of a vector divided by the variance of the vector
+#'
 #' @param x A numeric vector
 #'
 #' @return A numeric value

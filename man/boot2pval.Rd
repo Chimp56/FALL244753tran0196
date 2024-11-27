@@ -23,7 +23,7 @@ boot2pval(x1, x2, conf.level = 0.95, iter = 3000, mudiff = 0, test = "two")
 pvalue and histogram
 }
 \description{
-boot2pval
+boot2pval computes the p-value for a two-sample t-test using a bootstrap method
 }
 \examples{
 x1=rnorm(100,0,1)

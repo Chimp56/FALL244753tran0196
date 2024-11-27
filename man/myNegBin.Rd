@@ -2,7 +2,7 @@
 % Please edit documentation in R/myNegBin.R
 \name{myNegBin}
 \alias{myNegBin}
-\title{Negative Binomial Distribution}
+\title{myNegBin}
 \usage{
 myNegBin(y, r, p)
 }
@@ -17,7 +17,7 @@ myNegBin(y, r, p)
 the probability of y failures before r successes
 }
 \description{
-Negative Binomial Distribution
+Compute the probability of y failures before r successes
 }
 \examples{
 myNegBin(5,2,0.5)

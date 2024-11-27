@@ -2,7 +2,7 @@
 % Please edit documentation in R/myncurve.R
 \name{myncurve}
 \alias{myncurve}
-\title{Normal Curve with Area Calculation}
+\title{myncurve}
 \usage{
 myncurve(mu, sigma, a)
 }
@@ -17,7 +17,7 @@ myncurve(mu, sigma, a)
 A list containing the mean, standard deviation, and calculated probability
 }
 \description{
-Normal Curve with Area Calculation
+Plot a normal distribution curve and calculate the probability P(X <= a)
 }
 \examples{
 myncurve(0, 1, 1.5)

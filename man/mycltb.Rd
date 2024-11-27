@@ -2,7 +2,7 @@
 % Please edit documentation in R/mycltb.R
 \name{mycltb}
 \alias{mycltb}
-\title{mycltb - my central limit theorem binomial}
+\title{mycltb}
 \usage{
 mycltb(n, iter, p = 0.5)
 }
@@ -17,7 +17,7 @@ mycltb(n, iter, p = 0.5)
 a histogram of the sample mean of a binomial distribution
 }
 \description{
-mycltb - my central limit theorem binomial
+Compute a histogram of the sample mean of a binomial distribution
 }
 \examples{
 mycltb(10, 1000, 0.5)

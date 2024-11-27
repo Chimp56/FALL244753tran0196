@@ -1,4 +1,7 @@
-#' @title Bootstrap Confidence Intervals
+#' myboot2
+#'
+#' @description
+#' Bootstrap Confidence Intervals for a Sample Statistic
 #'
 #' @param iter Number of bootstrap samples
 #' @param x Data

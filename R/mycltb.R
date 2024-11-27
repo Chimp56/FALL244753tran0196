@@ -1,4 +1,7 @@
-#' mycltb - my central limit theorem binomial
+#' mycltb
+#'
+#' @description
+#' Compute a histogram of the sample mean of a binomial distribution
 #'
 #' @param n sample size
 #' @param iter number of iterations

@@ -1,4 +1,7 @@
-#' @title Negative Binomial Distribution
+#' myNegBin
+#'
+#' @description
+#' Compute the probability of y failures before r successes
 #'
 #' @param y number of failures
 #' @param r size

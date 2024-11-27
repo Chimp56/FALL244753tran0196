@@ -2,7 +2,7 @@
 % Please edit documentation in R/myboot2.R
 \name{myboot2}
 \alias{myboot2}
-\title{Bootstrap Confidence Intervals}
+\title{myboot2}
 \usage{
 myboot2(
   iter = 10000,
@@ -33,7 +33,7 @@ myboot2(
 A histogram of the bootstrap sample statistics with a confidence interval
 }
 \description{
-Bootstrap Confidence Intervals
+Bootstrap Confidence Intervals for a Sample Statistic
 }
 \examples{
 x=rnorm(100)
